@@ -13,7 +13,6 @@ function getComputerChoice() {
     } 
     return computerSelection; 
 }
-console.log(getComputerChoice());
 
 // getHumanChoice
 
@@ -37,4 +36,71 @@ function getHumanChoice() {
     }
     return humanSelection;
 }
-console.log(getHumanChoice());
+
+// players score variables
+let humanScore = 0;
+let computerScore = 0;
+
+//humanSelection = getHumanChoice();
+//computerSelection = getComputerChoice();
+// playRound
+function playRound(humanSelection, computerSelection) {
+    if (humanSelection === "Rock") {
+        if (computerSelection === "Rock") {
+            result = "This round was tied";
+        }
+        else if (computerSelection === "Paper") {
+            result = "You lose! Paper beats Rock";
+            computerScore += 1;
+        }
+        else {
+            result = "You win! Rock beats Scissors";
+            humanScore += 1;
+        }
+    }
+    else if (humanSelection === "Paper") {
+        if (computerSelection === "Rock") {
+            result = "You win! Paper beats Rock";
+            humanScore += 1;
+        }
+        else if (computerSelection === "Paper") {
+            result = "This round was tied"
+        }
+        else {
+            result = "You lose! Scissors beats Paper";
+            computerScore += 1;
+        }
+    }   
+    else {
+        if (computerSelection === "Rock") {
+            result = "You lose! Rock beats Scissors";
+            humanScore += 1;
+        }
+        else if (computerSelection === "Paper") {
+            result = "You win! Scissor beats Paper";
+            computerScore += 1;  
+        }
+        else {
+            result = "This round was tied"
+        }
+    }
+    return result; 
+}
+// console.log ("You", humanSelection);
+// console.log ("Computer", computerSelection)
+// console.log (playRound(humanSelection, computerSelection));
+// console.log(humanScore);
+// console.log(computerScore);
+// plaGame
+function playGame() {
+  for (let i = 0; i < 5; i++) {
+    humanSelection = getHumanChoice();
+    computerSelection = getComputerChoice();
+    game = playRound(humanSelection, computerSelection);
+    console.log("Game", i+1, "Your selection was", humanSelection, "your opponent's selection was", computerSelection);    
+    console.log(game);    
+  }  
+}
+playGame();
+console.log("Won", humanScore, "Lost", computerScore,"Tie", 5-(humanScore+computerScore));
+
